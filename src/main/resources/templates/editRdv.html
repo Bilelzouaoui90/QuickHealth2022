@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Jumbotron Template for Bootstrap</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+<div data-th-replace="navbar"></div>
+<main role="main">
+
+
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+
+            <div class="container">
+                <h2> Gestion cabinet medicale</h2>
+                <h6>Formulaire ajout medecin</h6>
+            </div>
+
+            <div class="container">
+
+
+
+                <form th:object="${FormRdv}" method="post" th:action="@{/rdvsContr/save}">
+                    <div class="form-group">
+                        <label >Id</label>
+                        <input  class="form-control" id="idr" th:field="*{id}" readonly  >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label >Date</label>
+                        <input type="datetime-local" class="form-control" id="idm" th:field="*{date}"  >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="doctor">Medecin</label>
+                        <select  class="form-control" id="doctor"  th:field="*{doctor.id}" >
+                            <option th:each="c:${doctors}" th:value="${c.id}" th:utext="${c.firstname}+' '+${c.lastname}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="patient">Patient</label>
+                        <select  class="form-control" id="patient"  th:field="*{patient.id}" >
+                            <option th:each="c:${patients}" th:value="${c.id}" th:utext="${c.firstname}+' '+${c.lastname}"></option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="container">
+        <p>&copy; Company 2017-2018</p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

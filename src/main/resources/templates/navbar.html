@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" xmlns:th="http://www.w3.org/1999/xhtml"
+     xmlns:sec="http://www.w3.org/1999/xhtml">
+    <a class="navbar-brand" href="#">Quick Health </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestion Patient</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown02">
+
+                    <a class="dropdown-item" th:href="@{/patients/add}">Ajouter Patient</a>
+                    <a class="dropdown-item" th:href="@{/patients/list}">List Patient</a>
+
+
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestion Medecins</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+
+                    <a class="dropdown-item" th:href="@{/doctors/add}">Ajouter médecin</a>
+                    <a class="dropdown-item" th:href="@{/doctors/list}">List medecin</a>
+                    <a class="dropdown-item" th:href="@{/doctors/recherche}">Recherche par specialite</a>
+                    <a class="dropdown-item" th:href="@{/doctors/avancee}">Recherche avancée</a>
+
+                </div>
+            </li>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestion des RDV</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown03">
+
+                    <a class="dropdown-item" th:href="@{/rdvsContr/add}">Ajouter RDV</a>
+                    <a class="dropdown-item" th:href="@{/rdvsContr/list}">List RDV</a>
+
+
+                </div>
+            </li>
+
+        </ul>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>

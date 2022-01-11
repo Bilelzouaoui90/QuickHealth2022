@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Jumbotron Template for Bootstrap</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+<div data-th-replace="navbar"></div>
+<main role="main">
+
+
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+
+            <div class="container">
+                <h2> Gestion cabinet medicale</h2>
+                <h6>Formulaire ajout medecin</h6>
+            </div>
+
+            <div class="container">
+
+
+
+                <form th:object="${Formdoctor}" method="post" th:action="@{/doctors/save}" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="nom">Nom</label>
+                        <input type="text" class="form-control" id="nom" th:field="*{firstname}" placeholder="Tapez nom" >
+                        <div class="alert alert-warning" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="prenom">Prenom</label>
+                        <input type="text" class="form-control" id="prenom"  th:field="*{lastname}" placeholder="Tapez prenom">
+                    </div>
+                    <div class="form-group">
+                        <label for="adress">Adresse</label>
+                        <input type="text" class="form-control" id="adress"  th:field="*{adresse}"  placeholder="Tapez Adresse">
+                    </div>
+                    <div class="form-group">
+                        <label for="tel">Numero Tel </label>
+                        <input type="text" class="form-control" id="tel" name="tel" th:field="*{phone}"  placeholder="Tapez Numero Tel">
+                    </div>
+                    <div>
+                        <p>
+                            <label>image: </label>
+                            <input type="file" name="fileImage"
+                                    id="fileImage"accept="image/png, image/jpeg" onchange="previewPicture(this)"
+                            />
+                        </p>
+                        <p> <img  src="#" id="image" alt="image"width="50" height="50">
+                        </p>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specialite">Specialite</label>
+                        <select class="form-control" id="specialite" name="specialite" th:field="*{specialite}">
+                            <option value="Spec 1">Spec 1</option>
+                            <option value="Spec 1">Spec 2</option>
+                            <option value="Spec 1">Spec 3</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="container">
+        <p>&copy; Company 2017-2018</p>
+    </footer>
+    <script type="text/javascript" >
+        // L'image img#image
+        var image = document.getElementById("image");
+
+        // La fonction previewPicture
+        var previewPicture  = function (e) {
+
+            // e.files contient un objet FileList
+            const [picture] = e.files
+
+            // "picture" est un objet File
+            if (picture) {
+                // On change l'URL de l'image
+                image.src = URL.createObjectURL(picture)
+            }
+        }
+    </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

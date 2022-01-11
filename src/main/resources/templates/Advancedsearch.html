@@ -1,0 +1,105 @@
+
+<!doctype html>
+<html lang="en" xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Jumbotron Template for Bootstrap</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+<div data-th-replace="navbar"></div>
+<main role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <div class="container">
+                <h2>Resultat de recherche doctors</h2>
+                <br>
+                <form th:object="${recherche}" th:action="@{/doctors/advancedsearch}" method="post">
+
+                    <div class="form-control">
+                        <label for="pseudo">Pseudo</label>
+                        <input type="text" id="pseudo" th:field="*{pseudo}" class="form-control">
+                    </div>
+
+                    <div class="form-control">
+                        <label for="specialite">Spécialite</label>
+                        <select id="specialite" th:field="*{specialite}" class="form-control">
+                            <option value="Spec 1">Spec 1</option>
+                            <option value="Spec 2">Spec 2</option>
+                            <option value="Spec 3">Spec 3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+
+                </form>
+                <br>
+            </div>
+            <div>
+
+                <table class="table table-dark">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">FirstName</th>
+                        <th scope="col">LastName</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">specialite</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="c :${recherche.doctors}">
+                        <td th:utext="${c.id}"></td>
+                        <td th:utext="${c.firstname}"></td>
+                        <td th:utext="${c.lastname}"></td>
+                        <td th:utext="${c.adresse}"></td>
+                        <td th:utext="${c.phone}"></td>
+                        <td th:utext="${c.specialite}"></td>
+                        <td>
+                            <a th:href="@{/doctors/delete/{id} (id=${c.id})}" class="btn btn-danger">Delete</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/doctors/update/{id} (id=${c.id})}" class="btn btn-success">update</a>
+
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+    </div> <!-- /container -->
+
+</main>
+
+<footer class="container">
+    <p>&copy; Company 2017-2018</p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
